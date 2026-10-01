@@ -1,0 +1,22 @@
+{% import "_issues_heading.tt" as issues_heading %}
+---
+title: FLS team meeting {{CURRENT_DATE}}
+tags: ["fls", "meeting", "minutes"]
+date: {{CURRENT_DATE}}
+discussion:
+url:
+---
+
+# FLS team meeting {{CURRENT_DATE}}
+
+## Attendees
+
+- TODO
+- TODO (notetaker)
+
+## Custom items
+
+TODO
+
+## Nominated{{issues_heading::render(issues=nominated)}}
+## Open PRs{{issues_heading::render(issues=open_prs)}}
