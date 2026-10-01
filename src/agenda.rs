@@ -1031,40 +1031,38 @@ pub fn council_triage<'a>() -> Box<dyn Action + Send + Sync> {
 pub fn goals<'a>() -> Box<dyn Action + Send + Sync> {
     Box::new(Step {
         name: "goals_agenda",
-        actions: vec![
-            Query {
-                repos: vec![("rust-lang", "goals")],
-                queries: vec![
-                    QueryMap {
-                        name: "proposals",
-                        kind: QueryKind::List,
-                        query: Arc::new(github::Query {
-                            filters: vec![("state", "open")],
-                            include_labels: vec!["C-goal-proposal"],
-                            exclude_labels: vec![],
-                        }),
-                    },
-                    QueryMap {
-                        name: "meta",
-                        kind: QueryKind::List,
-                        query: Arc::new(github::Query {
-                            filters: vec![("state", "open")],
-                            include_labels: vec!["C-goals-meta"],
-                            exclude_labels: vec![],
-                        }),
-                    },
-                    QueryMap {
-                        name: "nominated",
-                        kind: QueryKind::List,
-                        query: Arc::new(github::Query {
-                            filters: vec![("state", "open")],
-                            include_labels: vec!["I-goals-nominated"],
-                            exclude_labels: vec![],
-                        }),
-                    },
-                ],
-            },
-        ],
+        actions: vec![Query {
+            repos: vec![("rust-lang", "goals")],
+            queries: vec![
+                QueryMap {
+                    name: "proposals",
+                    kind: QueryKind::List,
+                    query: Arc::new(github::Query {
+                        filters: vec![("state", "open")],
+                        include_labels: vec!["C-goal-proposal"],
+                        exclude_labels: vec![],
+                    }),
+                },
+                QueryMap {
+                    name: "meta",
+                    kind: QueryKind::List,
+                    query: Arc::new(github::Query {
+                        filters: vec![("state", "open")],
+                        include_labels: vec!["C-goals-meta"],
+                        exclude_labels: vec![],
+                    }),
+                },
+                QueryMap {
+                    name: "nominated",
+                    kind: QueryKind::List,
+                    query: Arc::new(github::Query {
+                        filters: vec![("state", "open")],
+                        include_labels: vec!["I-goals-nominated"],
+                        exclude_labels: vec![],
+                    }),
+                },
+            ],
+        }],
     })
 }
 
@@ -1074,17 +1072,15 @@ pub fn fls<'a>() -> Box<dyn Action + Send + Sync> {
         actions: vec![
             Query {
                 repos: vec![("rust-lang", "fls")],
-                queries: vec![
-                    QueryMap {
-                        name: "open_prs",
-                        kind: QueryKind::List,
-                        query: Arc::new(github::Query {
-                            filters: vec![("state", "open"), ("is", "pull-request")],
-                            include_labels: vec![],
-                            exclude_labels: vec![],
-                        }),
-                    },
-                ],
+                queries: vec![QueryMap {
+                    name: "open_prs",
+                    kind: QueryKind::List,
+                    query: Arc::new(github::Query {
+                        filters: vec![("state", "open"), ("is", "pull-request")],
+                        include_labels: vec![],
+                        exclude_labels: vec![],
+                    }),
+                }],
             },
             Query {
                 repos: vec![("rust-lang", "fls"), ("rust-lang", "fls-team")],
