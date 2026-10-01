@@ -447,7 +447,7 @@ pub fn lang<'a>() -> Box<dyn Action + Send + Sync> {
                 ],
             },
             Query {
-                repos: vec![("rust-lang", "rust-project-goals")],
+                repos: vec![("rust-lang", "goals")],
                 queries: vec![
                     QueryMap {
                         name: "project_goals",
@@ -467,6 +467,7 @@ pub fn lang<'a>() -> Box<dyn Action + Send + Sync> {
                     ("rust-lang", "reference"),
                     ("rust-lang", "stdarch"),
                     ("rust-lang", "lang-team"),
+                    ("rust-lang", "goals"),
                 ],
                 queries: vec![
                     QueryMap {
