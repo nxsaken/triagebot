@@ -1069,22 +1069,10 @@ pub fn goals<'a>() -> Box<dyn Action + Send + Sync> {
 pub fn fls<'a>() -> Box<dyn Action + Send + Sync> {
     Box::new(Step {
         name: "fls_agenda",
-        actions: vec![
-            Query {
-                repos: vec![("rust-lang", "fls")],
-                queries: vec![QueryMap {
-                    name: "open_prs",
-                    kind: QueryKind::List,
-                    query: Arc::new(github::Query {
-                        filters: vec![("state", "open"), ("is", "pull-request")],
-                        include_labels: vec![],
-                        exclude_labels: vec![],
-                    }),
-                }],
-            },
-            Query {
-                repos: vec![("rust-lang", "fls"), ("rust-lang", "fls-team")],
-                queries: vec![QueryMap {
+        actions: vec![Query {
+            repos: vec![("rust-lang", "fls"), ("rust-lang", "fls-team")],
+            queries: vec![
+                QueryMap {
                     name: "nominated",
                     kind: QueryKind::List,
                     query: Arc::new(github::Query {
@@ -1092,9 +1080,18 @@ pub fn fls<'a>() -> Box<dyn Action + Send + Sync> {
                         include_labels: vec!["I-fls-nominated"],
                         exclude_labels: vec![],
                     }),
-                }],
-            },
-        ],
+                },
+                QueryMap {
+                    name: "open_prs",
+                    kind: QueryKind::List,
+                    query: Arc::new(github::Query {
+                        filters: vec![("state", "open"), ("is", "pull-request")],
+                        include_labels: vec![],
+                        exclude_labels: vec![],
+                    }),
+                },
+            ],
+        }],
     })
 }
 
