@@ -3,7 +3,7 @@
 title: FLS team meeting {{CURRENT_DATE}}
 tags: ["fls", "meeting", "minutes"]
 date: {{CURRENT_DATE}}
-discussion:
+discussion: https://rust-lang.zulipchat.com/#narrow/channel/520710-t-lang.2Ffls/topic/{{CURRENT_DATE}}.20meeting/
 url:
 ---
 
